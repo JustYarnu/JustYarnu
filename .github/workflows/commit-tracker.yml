@@ -1,39 +1,49 @@
-name: Update latest commit in README
+name: Update Latest Commit in Profile README
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # daily at midnight UTC
-  workflow_dispatch:
+    - cron: "0 0 * * *"  # daily at 00:00 UTC
+  workflow_dispatch:  # allows manual run
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get latest commit
+      - name: Get latest commit info
         id: commit
         run: |
           COMMIT_MSG=$(git log -1 --pretty=format:"%s")
           COMMIT_HASH=$(git log -1 --pretty=format:"%h")
+          COMMIT_DATE=$(git log -1 --pretty=format:"%cd" --date=short)
+
           echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
           echo "hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
+          echo "date=$COMMIT_DATE" >> $GITHUB_OUTPUT
 
-      - name: Update README
+      - name: Update README section
         run: |
-          sed -i "s|<!-- LATEST_COMMIT -->|Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }}|" README.md
+          REPLACEMENT="Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }} (${{ steps.commit.outputs.date }})"
 
-      - name: Commit changes
+          sed -i "/<!-- LATEST_COMMIT_START -->/,/<!-- LATEST_COMMIT_END -->/c\\
+<!-- LATEST_COMMIT_START -->\\
+$REPLACEMENT\\
+<!-- LATEST_COMMIT_END -->" README.md
+
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add README.md
-          git commit -m "Update latest commit in README" || exit 0
+
+          git commit -m "chore: update latest commit in README" || exit 0
           git push
