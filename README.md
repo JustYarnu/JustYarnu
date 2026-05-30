@@ -3,4 +3,4 @@
 # Start here
 
 ## Links
-[![YouTube](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@yarnu221)
+[![YouTube]([https://img.shields.io/badge/YouTube-0077B5?style=for-the-badge&logo=youtube&logoColor=red](https://img.shields.io/badge/YouTube-000000?style=for-the-badge&logo=youtube&logoColor=red))](https://www.youtube.com/@yarnu221)
