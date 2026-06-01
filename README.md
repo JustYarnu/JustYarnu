@@ -7,4 +7,4 @@ Latest commit: `9db2da4` - Update commit-tracker.yml (2026-06-01)
 ## Links
 [![Youtube](https://img.shields.io/badge/YouTube-000000?style=for-the-badge&logo=youtube&logoColor=red)](https://www.youtube.com/@yarnu221)
 [![Game Reviews](https://img.shields.io/badge/Game_Reviews-bb2e5b)](https://howlongtobeat.com/user/Yarnu/reviews/latest/1)
-
+[![Discord](https://img.shields.io/badge/Discord-5865f2?style=for-the-badge)](https://discord.com/users/411815654891585536)
