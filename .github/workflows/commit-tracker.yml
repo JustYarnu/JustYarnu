@@ -24,7 +24,6 @@ jobs:
           COMMIT_MSG=$(git log -1 --pretty=format:"%s")
           COMMIT_HASH=$(git log -1 --pretty=format:"%h")
           COMMIT_DATE=$(git log -1 --pretty=format:"%cd" --date=short)
-
           echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
           echo "hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
           echo "date=$COMMIT_DATE" >> $GITHUB_OUTPUT
@@ -32,18 +31,15 @@ jobs:
       - name: Update README section
         run: |
           REPLACEMENT="Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }} (${{ steps.commit.outputs.date }})"
-
-          sed -i "/<!-- LATEST_COMMIT_START -->/,/<!-- LATEST_COMMIT_END -->/c\\
-<!-- LATEST_COMMIT_START -->\\
-$REPLACEMENT\\
-<!-- LATEST_COMMIT_END -->" README.md
+          sed -i "//,//c\\
+          \\
+          $REPLACEMENT\\
+          " README.md
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add README.md
-
           git commit -m "chore: update latest commit in README" || exit 0
           git push
