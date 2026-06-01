@@ -2,8 +2,8 @@ name: Update Latest Commit in Profile README
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # daily at 00:00 UTC
-  workflow_dispatch:  # allows manual run
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,14 +29,24 @@ jobs:
           echo "date=$COMMIT_DATE" >> $GITHUB_OUTPUT
 
       - name: Update README section
+        shell: python
         run: |
-          echo "" > new_content.txt
-          echo "Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }} (${{ steps.commit.outputs.date }})" >> new_content.txt
-          echo "" >> new_content.txt
+          import re
+
+          hash_val = "${{ steps.commit.outputs.hash }}"
+          msg_val = "${{ steps.commit.outputs.message }}"
+          date_val = "${{ steps.commit.outputs.date }}"
           
-          sed -i -e '//,// {' -e 'r new_content.txt' -e 'd;}' README.md
-          
-          rm new_content.txt
+          new_block = f"<!-- LATEST_COMMIT_START -->\nLatest commit: `{hash_val}` - {msg_val} ({date_val})\n<!-- LATEST_COMMIT_END -->"
+
+          with open("README.md", "r", encoding="utf-8") as f:
+              content = f.read()
+
+          pattern = r"<!-- LATEST_COMMIT_START -->.*?<!-- LATEST_COMMIT_END -->"
+          updated_content = re.sub(pattern, new_block, content, flags=re.DOTALL)
+
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(updated_content)
 
       - name: Commit and push changes
         run: |
