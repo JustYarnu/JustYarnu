@@ -30,11 +30,13 @@ jobs:
 
       - name: Update README section
         run: |
-          REPLACEMENT="Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }} (${{ steps.commit.outputs.date }})"
-          sed -i "//,//c\\
-          \\
-          $REPLACEMENT\\
-          " README.md
+          echo "" > new_content.txt
+          echo "Latest commit: \`${{ steps.commit.outputs.hash }}\` - ${{ steps.commit.outputs.message }} (${{ steps.commit.outputs.date }})" >> new_content.txt
+          echo "" >> new_content.txt
+          
+          sed -i -e '//,// {' -e 'r new_content.txt' -e 'd;}' README.md
+          
+          rm new_content.txt
 
       - name: Commit and push changes
         run: |
