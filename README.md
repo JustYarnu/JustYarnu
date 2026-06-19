@@ -20,6 +20,8 @@ Creativity, for me, is the quintessential metric for enjoyability when it comes 
 
 [WinHardwarePoller](https://github.com/JustYarnu/WinHardwarePoller)
 
+## Tech
+
 | Main languages | Libraries / Frameworks | Misc |
 | :--- | :--- | :--- |
 | C# | React | Git |
