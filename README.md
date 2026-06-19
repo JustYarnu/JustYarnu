@@ -20,25 +20,10 @@ Creativity, for me, is the quintessential metric for enjoyability when it comes 
 
 [MacroForgePlus](https://github.com/JustYarnu/MacroForgePlus)
 
-## Main languages
-1. C#
-2. Java
-3. JavaScript/TypeScript
-4. Python
-5. Kotlin
-
-## Libraries/ Frameworks
-
-1. React
-2. Node.js
-3. ASP.NET Core
-4. Entity Framework Core
-5. Jest
-
-## Misc
-- Git
-- Docker
-- Kubernetes
-- ABAP, CDS, SAPUI5
-
-
+| Main languages | Libraries / Frameworks | Misc |
+| :--- | :--- | :--- |
+| C# | React | Git |
+| Java | Node.js | Docker |
+| JavaScript/TypeScript | ASP.NET Core | Kubernetes |
+| Python | Entity Framework Core | ABAP, CDS, SAPUI5 |
+| Kotlin | Jest | |
