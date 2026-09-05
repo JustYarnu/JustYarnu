@@ -18,7 +18,7 @@ Creativity, for me, is the quintessential metric for enjoyability when it comes 
 
 ## Current Project
 
-[WinHardwarePoller](https://github.com/JustYarnu/WinHardwarePoller)
+[epiphanyGen](https://github.com/JustYarnu/epiphanyGen)
 
 ## Tech
 
