@@ -18,7 +18,7 @@ Creativity, for me, is the quintessential metric for enjoyability when it comes 
 
 ## Current Project
 
-[epiphanyGen](https://github.com/JustYarnu/epiphanyGen)
+[RaGen](https://github.com/JustYarnu/RaGen)
 
 ## Tech
 
